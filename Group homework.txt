@@ -1,0 +1,84 @@
+Group members：OJHA Anushree，Caroline JOHNSON，Jinyu LIN
+Question：Bike sharing
+Database Source：https://www.kaggle.com/competitions/bike-sharing-demand/overview
+Our division：Part one--OJHA Anushree
+                       Part two--Jinyu LIN	
+                       Part three--Caroline JOHNSON
+
+
+
+Part one：Introduction and Presentation and description of the problem -- By OJHA Anushree 
+
+Introduction
+The Internet of Analytics in Shared Biking is the subject matter that we have selected.
+The term "bike sharing" describes the bicycle-sharing service offered by businesses in places including campuses, bus stops, subway stations, residential neighborhoods, and commercial and public spaces. It is a new kind of green sharing economy and a time-sharing leasing concept.
+
+The target variable is the number of bike rentals per day, which is represented by the column "count". The other variables include the date and time of the bike rental, the weather conditions on that day, and whether or not the day was a holiday. The bike rental dataset can also be used to study the impact of various other factors on bike rentals. For example, it can be used to study the impact of temperature, wind speed, and humidity on bike rentals. Additionally, the dataset can be used to study the impact of different seasons on bike rentals, as well as the impact of different days of the week.
+
+A way to rent bicycles is through the shared bicycle system. Through a network of stations in the city, membership registration, automobile rentals, and car returns will all be carried out automatically. You can sign up as a member and deposit a particular amount for automatic deduction and settlement after use in order to ride shared bicycles. You can also opt out of signing up as a member and pay the charge using the provided payment option after temporary use. People download the APP, scan the code to unlock and pick up the car, drive to their location, park, lock the car, and then return it using the system. The technology computes billing automatically based on real usage time.
+
+The data source contains three csv files: 
+sampleSubmission.csv 
+test.csv
+train.csv.
+
+We only used the dataset from the train.csv file. It contains hourly rental statistics for 2011 and 2012, as well as date, season and weather information. In addition, it presents information on temperature and humidity, as well as information on weekdays and holidays. Based on the information obtained in the above tables, we are very curious whether there is any change in the number of car rentals at different time points or in different seasons? On what basis do they vary? Is it temperature? humidity? When? Or season? What time of day is peak rental car season? Based on this, we classified the problems and made a series of data analysis.
+Research Questions selected
+
+Most frequently used Days and Times?
+
+This question refers to identifying the days of the week and times of the day when the bike sharing service is used the most, based on the data provided in the train.csv file from the Kaggle competition "Bike Sharing Demand." This could involve analyzing the dataset to find patterns in the usage of the service and identifying the days and times when the highest number of bike rentals occur.
+
+The relationship between different seasons and the number of bike rentals?
+
+This question refers to identifying any patterns or correlations between the number of bike rentals and the different seasons of the year. This could involve analyzing the dataset to find patterns in the usage of the service and identifying how the number of bike rentals changes across the different seasons, such as spring, summer, fall, and winter. This question also implies that the dataset has a column that indicates the season
+
+Average number of rentals per day in 24 hours per season? 
+
+This question refers to determining the average number of bike rentals for each hour of the day, for each season of the year.This would involve analyzing the dataset to find patterns in the usage of the service, and using this data to create a visual representation of the average number of bike rentals per hour, for each season of the year.
+
+How many people are renting a bike per hour? 
+
+This question refers to determining the number of bike rentals for each hour of the day.  This would involve analyzing the dataset to find patterns in the usage of the service, and using this data to create a visual representation of the number of bike rentals per hour.
+
+The relationship between temperature and rental volume? 
+
+This question refers to identifying any patterns or correlations between the number of bike rentals and the temperature. This would involve analyzing the dataset to find patterns in the usage of the service, and identifying how the number of bike rentals changes with temperature.
+
+Are there in any trends in bike usage on weekends and weekdays? 
+
+This question refers to identifying patterns or differences in the number of bike rentals on weekends and weekdays. This would involve analyzing the dataset to find patterns in the usage of the service, and using this data to create a visual representation of the number of bike rentals on weekends and weekdays.
+
+Correlation analysis
+
+
+
+
+
+
+Part two：Presentation of the data
+                Exploratory data analysis
+                Visualization of the data --By Jinyu LIN
+
+---From the rmd and html
+
+
+
+
+
+
+
+Part three：Conclusion--By Caroline JOHNSON
+ 
+Bike rental is a new practice that is attracting more and more people. Bike rental is growing exponentially. This is largely due to the convenience of the service rendered. Thanks to the various data analyzes that we were able to carry out, we can conclude that in general people rent bicycles every day. We visualized the data from three dimensions, the number of car rentals in a single day, car rentals in different seasons, and car rentals in different temperatures. Each major point is analyzed one by one, and finally there is a correlation analysis to summarize and explain. 
+ 
+From the data we found there are above between 275,000 and 310,000 bicycles rented per day.  
+We have noticed that there is a slight increase in the use of bicycles at the end of the week. From Thursday until Saturday the bar of 300,000 bikes rented per day is exceeded. 
+Over the 24 hours of a day, the times when there are the most rentals are: 8-9 a.m. and 6-8 p.m. Indeed it corresponds to peak hours. We can assume that people were renting bikes to make trips home-to-work, work-to-home. 
+We also noticed that there was a correlation between the season and the number of bikes rented. Indeed during seasons 2 and 3 which correspond to the spring and summer seasons, there is a large number of rented bikes. This is due to rising temperatures. Indeed the hotter it is the more we rent bikes. We notice that from 20° the number of bikes rented increases. From 30° the numbers are still increasing, but after 35° the number of rental cars decreases because it is too hot. 
+To conclude, we discover: 
+1. Count (the number of people renting a car) is positively correlated with temperature. The number of people renting a car will decrease in cold weather, and it is negatively correlated with humidity. In wet and rainy weather, most people are unwilling to rent a car. 
+2. When the temperature is between 15-35°C, the rental volume of shared bicycles is higher; when the temperature is below 15°C, the lower the temperature, the lower the rental volume; when the temperature is higher, a certain amount of rental volume can still be maintained 
+3. According to our code analysis, the overall change trend of the average number of car rentals in each season is roughly the same. Within 24 hours, the two major car rental peak periods are between 8-10 am and 18-20 am respectively. 
+Bike rental is a new means of transport that is gradually taking its place in people's daily lives. It is a very useful means of transport because the customer pays for what he consumes and is not encumbered by the bicycle. This allows him to practice sport while respecting the planet for future generations. 
+
