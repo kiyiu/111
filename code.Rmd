@@ -1,0 +1,137 @@
+---
+title: "coding"
+author: "Jinyu"
+date: "2023-01-18"
+output: html_document
+##Group members：OJHA Anushree，Caroline JOHNSON，Jinyu LIN
+##Question：Bike sharing
+##Database Source：https://www.kaggle.com/competitions/bike-sharing-demand/overview
+##Our team division:
+  
+##Part 1: Introduction
+        Presentation and description of the problem  -- By OJHA Anushree 
+
+
+##Part 2: Presentation of the data
+        Exploratory data analysis
+        Visualization of the data --By Jinyu LIN
+
+##Part 3: Conclusion  --By Caroline JOHNSON
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+Sys.setlocale("LC_TIME", "English")
+```
+
+# Preparation
+
+```{r message=FALSE}
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+```
+
+```{r}
+data = read_csv("train.csv")
+```
+
+# Most frequently used days
+
+```{r}
+data %>%
+  mutate(weekday = weekdays(datetime)) %>%
+  group_by(weekday) %>%
+  summarise(number = sum(count)) %>%
+  ggplot(aes(x = reorder(weekday, number), y = number)) +
+  geom_col() +
+  labs(x = "Weekdays", y = "Counts") +
+  scale_y_continuous(labels = scales::comma) +
+  theme_bw()
+```
+
+It seems that there is no difference.
+
+# The relationship between different seasons and the number of car rentals
+
+```{r}
+p <- data %>%
+  group_by(season) %>%
+  summarise(number = sum(count)) %>%
+  ggplot(aes(x = season, y = number)) +
+  geom_point() +
+  geom_line() +
+  labs(x = "Season", y = "Counts") +
+  scale_y_continuous(labels = scales::comma) +
+  theme_bw()
+ggplotly(p)
+```
+
+# Average number of rentals per day in 24 hours per season
+
+```{r}
+p1 = data %>% separate(datetime, into = c("data", "time"), sep = " ") %>% 
+  group_by(season, time) %>% 
+  summarise(mean = mean(count)) %>% 
+  mutate(Time = as.numeric(as.factor(time))) %>% 
+  ggplot(aes(Time, mean)) + 
+  geom_line(aes(color = factor(season), group = season)) + 
+  geom_point(aes(color = factor(season))) +
+  scale_x_continuous(limits = c(1,24), breaks = seq(0,24,2)) + 
+  labs(y = "Count", x = "Time", color = "Season")
+ggplotly(p1)
+```
+
+
+
+When temp is less than 35 Celsius, the correlation is positive. But if the temperature is too high, people don't like to ride bikes.
+
+# How many people are renting a car per hour?
+
+```{r}
+p3 <- data %>%
+  mutate(hour = hour(datetime)) %>%
+  ggplot(aes(x = factor(hour), y = count)) +
+  geom_boxplot() +
+  labs(x = "Hours", y = "Counts") +
+  theme_bw()
+ggplotly(p3)
+```
+
+# The relationship between temperature and rental volume
+
+```{r}
+p2 <- ggplot(data = data, aes(x = temp, y = count)) +
+  geom_point() +
+  geom_smooth() +
+  theme_bw()
+ggplotly(p2)
+```
+
+# The difference in count at 0-24
+
+```{r}
+p4 <- data %>%
+  mutate(hour = hour(datetime)) %>%
+  group_by(hour) %>%
+  summarise(number = sum(count)) %>%
+  ggplot(aes(x = hour, y = number)) +
+  geom_col() +
+  labs(x = "Hours", y = "Counts") +
+  theme_bw()
+ggplotly(p4)
+```
+
+It is clear that around 9 a.m. and 6 p.m. is the peak period for rentals, which also coincides with people's commuting times.
+
+# Correlation analysis
+
+```{r}
+library(ggcorrplot)
+ggcorrplot(cor(data[, -1]),hc.order=TRUE,
+           outline.color="white",colors = c("#6D9EC1", "white", "#E46726"), lab = TRUE)
+```
+
+It can be seen temp is positively correlated with count, humidity and weather are negatively correlated with count.The number of people renting a car in cold weather will decrease, and in wet and rainy weather, most people are reluctant to rent a car.
+
